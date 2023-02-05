@@ -1,0 +1,18 @@
+const db = new Map();
+
+db.set('e35a1473-de27-44cc-9de7-a6304e78f976', {text : 'This is a todo 1 test' , id:'e35a1473-de27-44cc-9de7-a6304e78f976'});
+db.set('7eabce2a-bf5e-4586-bcad-d8102efa8f77', {text : 'This is a todo 2 test' , id:'7eabce2a-bf5e-4586-bcad-d8102efa8f77'});
+
+const repo= {
+    findAll : () => {
+        Array.from(db.values);
+    },
+    create:(contact) =>{
+        const newContact = {
+            firstName: contact.text,
+        };
+        db.set(newContact);
+    },
+};
+
+module.exports = repo;
