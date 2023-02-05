@@ -3,7 +3,8 @@ extends layout
 block content
   h1= heading
   hr
-  #contacts-wrapper
-    ul.contacts-list
-      each val in contacts
-        li= val.text
+  if contacts.length> 0
+    #contacts-wrapper
+      ul.contacts-list
+        each val in contacts
+          li= val.text

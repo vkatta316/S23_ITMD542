@@ -4,14 +4,13 @@ db.set('e35a1473-de27-44cc-9de7-a6304e78f976', {text : 'This is a todo 1 test' ,
 db.set('7eabce2a-bf5e-4586-bcad-d8102efa8f77', {text : 'This is a todo 2 test' , id:'7eabce2a-bf5e-4586-bcad-d8102efa8f77'});
 
 const repo= {
-    findAll : () => {
-        Array.from(db.values);
-    },
-    create:(contact) =>{
+    findAll : () => Array.from(db.values()),
+    create: (contact) => {
         const newContact = {
-            firstName: contact.text,
+            id:'e35a1473-de27-44cc-9de7-a6304e78f976',
+            text: contact.text,
         };
-        db.set(newContact);
+        db.set(newContact.id , newContact);
     },
 };
 
