@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  div.container
+    h1= heading
+    p Are you sure you want to delete the following Contact ?
+    p= contact.text.firstName
+    form(class="contactGroup" method="POST" action=`/contacts/${contact.id}/delete`)
+      button(class="btn")
+        | Confirm Delete

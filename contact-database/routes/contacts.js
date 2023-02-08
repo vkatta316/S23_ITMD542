@@ -1,24 +1,22 @@
 var express = require('express');
 var router = express.Router();
-const contactsRepo = require('../src/contactsRepository');
-
-let data = [
-  {text : 'This is a todo 1 test' , id:'e35a1473-de27-44cc-9de7-a6304e78f976'},
-   {text : 'This is a todo 2 test' , id:'7eabce2a-bf5e-4586-bcad-d8102efa8f77'}
-
-];
+const crypto = require('crypto');
+//const contactsRepo = require('../src/contactsRepository');
+const contactsRepo = require('../src/contactsFileRepository');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   const data = contactsRepo.findAll();
   console.log(data);
-  res.render('contacts', { heading: 'List Of All Contacts', contacts:data });
+  res.render('contacts', { heading: 'List Of All Contacts', title: 'Contacts Database', contacts:data });
 });
 
 /* GET Contact page. */
 router.get('/add', function(req, res, next) {
-  res.render('contacts_add', { heading: 'Create a New Contact' });
+  console.log(crypto.randomUUID()); 
+  res.render('contacts_add', { heading: 'Create a New Contact' , contact_id:crypto.randomUUID() });
 });
+
 
 /* POST Contact page. */
 router.post('/add', function(req, res, next) {
@@ -29,13 +27,73 @@ router.post('/add', function(req, res, next) {
     // Add data base
     let firstName = req.body.firstName.trim();
     let lastName = req.body.lastName.trim();
-    let email = req.body.emailAddress.trim();
+    let email = req.body.email.trim();
     let notes = req.body.notes.trim();
-    console.log(firstName + ' ' +lastName +' ' + email + ' ' + notes); 
-    contactsRepo.create({text: req.body.firstName.trim()})
+    
+    var contactInfo = {
+      firstName, lastName, email, notes,
+    };
+
+    console.log(contactInfo + ' ' +firstName + ' ' +lastName +' ' + email + ' ' + notes); 
+    contactsRepo.create({text: contactInfo})
     res.redirect("/contacts");
   }
   
 });
 
+/* GET Single Contact. */
+router.get('/:uuid', function(req, res, next) {
+  const contact = contactsRepo.findById(req.params.uuid);
+  console.log('AAAAAAA' + JSON.stringify(contact));
+  if(contact){
+    res.render('contact', { title: 'View Contact Details', contact: contact});
+  }else{
+    res.redirect('/contacts')
+  }
+ 
+});
+
+/* Delete Contact. */
+router.get('/:uuid/delete', function(req, res, next) {
+  const contact = contactsRepo.findById(req.params.uuid);
+  res.render('contacts_delete', { heading: 'Delete a New Contact', contact: contact });
+});
+
+/* Confirm Delete Contact. */
+router.post('/:uuid/delete', function(req, res, next) {
+  contactsRepo.deleteById(req.params.uuid);
+  res.redirect('/contacts');
+});
+
+/* Edit Contact page. */
+router.get('/:uuid/edit', function(req, res, next) {
+  const contact = contactsRepo.findById(req.params.uuid);
+  console.log('Edit Contact page' + contact);
+  res.render('contacts_Edit', { heading: 'Edit a Contact' , contact: contact });
+});
+
+/* POST Edit Contact page. */
+router.post('/:uuid/edit', function(req, res, next) {
+  if(req.body.firstName.trim() === '' || req.body.lastName.trim() === ''){
+    const contact = contactsRepo.findById(req.params.uuid);
+    res.render('contacts_edit' , {heading : 'Edit a Contact' , msg : 'Contact First Name and Last Name are Required Fields' , contact: contact});
+
+  }else{
+    // Add data base
+    let firstName = req.body.firstName.trim();
+    let lastName = req.body.lastName.trim();
+    let email = req.body.email.trim();
+    let notes = req.body.notes.trim();
+    
+    var contactInfo = {
+      firstName, lastName, email, notes,
+    };
+    const updatedContact = {id: req.params.uuid , text: contactInfo};
+    console.log("updatedContact " + updatedContact);
+    console.log(contactInfo + ' ' +firstName + ' ' +lastName +' ' + email + ' ' + notes); 
+    contactsRepo.update(updatedContact)
+    res.redirect(`/contacts/${req.params.uuid}`);
+  }
+  
+});
 module.exports = router;

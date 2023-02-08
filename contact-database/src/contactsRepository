@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const db = new Map();
 
 db.set('e35a1473-de27-44cc-9de7-a6304e78f976', {text : 'This is a todo 1 test' , id:'e35a1473-de27-44cc-9de7-a6304e78f976'});
@@ -5,13 +6,17 @@ db.set('7eabce2a-bf5e-4586-bcad-d8102efa8f77', {text : 'This is a todo 2 test' ,
 
 const repo= {
     findAll : () => Array.from(db.values()),
+    findById: (uuid) => db.get(uuid), 
     create: (contact) => {
+        console.info('CONTACT ' + contact);
         const newContact = {
-            id:'e35a1473-de27-44cc-9de7-a6304e78f976',
+            id:crypto.randomUUID(),
             text: contact.text,
         };
         db.set(newContact.id , newContact);
     },
+    deleteById: (uuid) => db.delete(uuid),
+    update: (contact) => db.set(contact.id, contact),
 };
 
 module.exports = repo;

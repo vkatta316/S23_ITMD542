@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div.container
+    h1= heading
+    if msg
+      p(class = 'redText')= msg
+    form(class="contactGroup" method="POST" action=`/contacts/${contact.id}/edit`)
+      input(type="text" id="contactId" name="contactId" class = "contactInput" placeholder = "Contact Id")
+      input(type="text" name="firstName" class = "contactInput" placeholder = "First Name" required value  = contact.text.firstName)
+      input(type="text" name="lastName" class = "contactInput" placeholder = "Last Name" required value  = contact.text.lastName)
+      input(type="email" name="email" class = "contactInput" placeholder = "Email Address" value  = contact.text.email)
+      input(type="text" name="notes" class = "contactInput" placeholder = "Notes" value  = contact.text.notes)
+      input(type="text" name="lastEdited" class = "contactInput" placeholder = "Last Edited")
+      button(class="btn")
+        | Save Changes

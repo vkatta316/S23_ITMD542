@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  hr
+  p Welcome to #{title}
+  p= contact.text.lastName
+    .contact-actions
+      a(href=`/contacts`) View All Contacts
+      | 
+      a(href=`/contacts/${contact.id}/delete`) Delete Contact
+      | 
+      a(href=`/contacts/${contact.id}/edit`) Edit Contact
