@@ -24,7 +24,7 @@ const repo= {
         console.info('CONTACT ' + contact);
         const newContact = {
             id:crypto.randomUUID(),
-            text: contact.text,
+            contactData: contact.contactData,
         };
         db.set(newContact.id , newContact);
         saveData();
