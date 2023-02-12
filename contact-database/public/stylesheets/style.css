@@ -173,7 +173,6 @@ a.cancelContact {
   left: 0;
   right: 0;
   background-color: #fff;
-  line-height: 130px;
   vertical-align: middle;
 }
 
@@ -253,7 +252,7 @@ ul.contact-details {
     border-spacing: 0;
     position: relative;
     z-index: 5;
-    padding-left: 22rem;
+    padding-left: 12rem;
 }
 
 .tableContents th {
@@ -271,4 +270,57 @@ ul.contact-details {
 
 .tableContents td {
   padding-top: 1rem;
+}
+
+@media screen and (min-width: 600px){
+  .ctn-ph-2>.col-1 
+    width: 50%;
+}
+
+@media screen and (min-width: 600px){
+  .contact-form-btn-ctn {
+      position: fixed;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      background-color: #fff;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .contact-form-btn-ctn>* {
+    padding-left: 8rem;
+    padding-right: 8rem;
+}
+}
+
+
+@media screen and (min-width: 600px){
+.ctn-ph-2>.col-1 {
+    width: 50%;
+}
+}
+
+@media screen and (min-width: 600px){
+  .contact-form-cta-social {
+    text-align: right;
+}
+}
+
+@media screen and (min-width: 768px){
+  .contact-form-btn-ctn>* {
+    padding-left: 8rem;
+    padding-right: 8rem;
+}
+}
+
+@media screen and (min-width: 1028px){
+.tableContents{
+  width: 100%;
+  border-spacing: 0;
+  position: relative;
+  z-index: 5;
+  padding-left: 22rem;
+}
+
 }
