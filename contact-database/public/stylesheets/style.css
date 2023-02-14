@@ -169,7 +169,7 @@ a.cancelContact {
 
 .contact-form-btn-ctn {
   position: fixed;
-  bottom: 0;
+  bottom: 20;
   left: 0;
   right: 0;
   background-color: #fff;
@@ -273,14 +273,16 @@ ul.contact-details {
 }
 
 @media screen and (min-width: 600px){
-  .ctn-ph-2>.col-1 
+  .ctn-ph-2>.col-1 {
     width: 50%;
+  }
+    
 }
 
 @media screen and (min-width: 600px){
   .contact-form-btn-ctn {
       position: fixed;
-      bottom: 10px;
+      bottom: 20px;
       left: 0;
       right: 0;
       background-color: #fff;
