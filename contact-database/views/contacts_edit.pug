@@ -17,6 +17,6 @@ block content
       | Save Changes
   div.contact-form-btn-ctn
     div(class="ctn-1 ctn-ph-2 flexbox flex-center")
-      div(class ="col-1" name = "lastEdited")= `${new Date()}`
+      div(class ="col-1" name = "lastEdited")= contact.contactData.date
       div(class="col-1 contact-form-cta-social")
         a(id = "contact-form-send" href=`/contacts/${contact.id}`) Back

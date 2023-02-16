@@ -34,7 +34,7 @@ function(req, res, next) {
     let email = req.body.email.trim();
     let notes = req.body.notes.trim();
     let id = crypto.randomUUID();
-    let date = new Date();
+    let date = new Date().toLocaleString();
     
     var contactInfo = {
         id, firstName, lastName, email, notes, date
@@ -95,7 +95,7 @@ function(req, res, next) {
     let email = req.body.email.trim();
     let notes = req.body.notes.trim();
     let id = crypto.randomUUID();
-    let date = new Date();
+    let date = new Date().toLocaleString();
     
     var contactInfo = {
         id, firstName, lastName, email, notes, date
