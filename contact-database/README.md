@@ -16,7 +16,10 @@ Quick Start:
 git clone https://code.devsnc.com/dev/app-sow-srm.git && cd contact-database && npm install
 
 Open the project on vs code and run npm install from the terminal
+
 Install express-validator by running npm i express-validator 
+
 Use npm run dev to start the application
+
 Open http://localhost:3000/ on browser
 
