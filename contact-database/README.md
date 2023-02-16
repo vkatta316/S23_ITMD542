@@ -17,7 +17,7 @@ Express.js with pug template
 
 Quick Start:
 
-git clone https://code.devsnc.com/dev/app-sow-srm.git && cd contact-database && npm install
+git clone https://github.com/vkatta316/S23_ITMD542.git && cd contact-database && npm install
 
 Open the project on vs code and run npm install from the terminal
 
